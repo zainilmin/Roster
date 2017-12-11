@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, NavItem} from 'react-bootstrap';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { connect } from 'react-redux';
+
 
 class Header extends Component {
   renderContent() {
@@ -11,13 +13,15 @@ class Header extends Component {
       case false:
         return (
           <Nav pullRight>
-                 <NavItem eventKey={2} href="/auth/google">Login with Google</NavItem>
+            <NavItem eventKey={2} href="/auth/google">Login with Google</NavItem>
           </Nav>
         );
       default:
         return (
           <Nav pullRight>
-            <NavItem eventKey={1} href="/students/new">Add Student</NavItem>
+            <LinkContainer to="/students/new">
+              <NavItem eventKey={1}>Add Student</NavItem>
+            </LinkContainer>
             <NavItem eventKey={2} href="/api/logout">Logout</NavItem>
           </Nav>
         );
@@ -29,7 +33,7 @@ class Header extends Component {
       <Navbar fluid>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to="/">Roster</Link>
+            <Link to={this.props.auth ? '/students' : '/'}>Roster</Link>
           </Navbar.Brand>
         </Navbar.Header>
         {this.renderContent()}
