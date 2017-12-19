@@ -4,7 +4,7 @@ class Landing extends Component {
 
   render() {
     return (
-      <div class='container-fluid'>
+      <div className='container-fluid'>
         <h2>Attendance management</h2>
       </div>
     );

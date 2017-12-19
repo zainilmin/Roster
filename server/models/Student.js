@@ -2,10 +2,16 @@ const mongoose = require('mongoose');
 const { Schema } =  mongoose;
 
 const studentSchema = new Schema ({
-  first_name: String,
-  last_name: String,
+  //_id: Schema.Types.ObjectId,
+  firstname: String,
+  lastname: String,
   grade: Number,
-  class: String,
+  section: String
+//  attendance: [{
+//    classID: { type: Schema.Types.ObjectId, ref: 'ClassSchedule' },
+//    status: String,
+//    comments: String
+//  }]
 });
 
-mongoose.model.('students', studentSchema);
+mongoose.model('students', studentSchema);

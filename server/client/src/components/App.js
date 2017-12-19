@@ -6,7 +6,7 @@ import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
-const StudentNew = () => <h2>StudentNew</h2>;
+import StudentNew from './students/StudentNew';
 
 class App extends Component {
 
