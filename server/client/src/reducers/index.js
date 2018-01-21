@@ -6,5 +6,5 @@ import studentReducer from './studentReducer';
 export default combineReducers({
   auth: authReducer,
   form: reduxForm,
-  students: studentReducer
+  studentStore: studentReducer
 });

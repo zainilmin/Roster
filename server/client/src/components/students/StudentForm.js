@@ -9,6 +9,14 @@ import formFields from './formFields';
 import formSelects from './formSelects';
 
 class StudentForm extends Component {
+
+  componentWillReceiveProps = (nextProps) => {
+    const { student } = nextProps;
+    if(student._id !== this.props.student._id) {
+      this.props.initialize(student);
+    }
+  }
+
   renderFields() {
     return _.map(formFields, ({ label, name }) => {
       return (
@@ -18,7 +26,7 @@ class StudentForm extends Component {
             component={StudentField}
             type="text"
             label={label}
-            name={name}/>
+            name={name} />
         </FormGroup>
       );
     });
@@ -39,12 +47,15 @@ class StudentForm extends Component {
     });
   }
 
-  renderButtons() {
+  renderButtons(pristine, submitting) {
     return (
       <FormGroup>
         <Col sm={3} />
         <Col>
-          <Button type='submit' className='btn btn-primary'>Next</Button>
+          <Button
+            type='submit'
+            disabled={pristine || submitting}
+            className='btn btn-primary'>Save</Button>
           <Link to="/students" className='btn btn-link'>Cancel</Link>
         </Col>
       </FormGroup>
@@ -52,12 +63,14 @@ class StudentForm extends Component {
   }
 
   render() {
+    const { handleSubmit, pristine, submitting, student } = this.props;
     return (
-      <div className='container-fluid'>
-        <form onSubmit={this.props.handleSubmit(this.props.onStudentSubmit)}>
+      <div>
+        <h1>{student._id ? 'Edit Student' : 'Add New Student'}</h1>
+        <form onSubmit={handleSubmit}>
           {this.renderFields()}
           {this.renderSelects()}
-          {this.renderButtons()}
+          {this.renderButtons(pristine, submitting)}
         </form>
       </div>
     )
@@ -74,10 +87,17 @@ function validate(values) {
   });
 
   _.each(formSelects, ({ name, emptyValueError }) => {
-      if(!values[name]) {
-        errors[name] = emptyValueError;
-      }
+    if(!values[name]) {
+      errors[name] = emptyValueError;
+    }
     });
+
+  if(!/^\+(?:[0-9] ?){6,14}[0-9]$/.test(values["phone"])) {
+    errors['phone'] = 'Phone number must be in International format';
+  }
+  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values['email'])) {
+    errors['email'] = 'Invalid email address';
+  }
 
   return errors;
 }

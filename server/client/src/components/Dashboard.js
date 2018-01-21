@@ -1,17 +1,12 @@
-import React, { Component } from 'react';
-import { Panel } from 'react-bootstrap';
-import StudentList from './students/StudentList';
+import React from 'react';
+import StudentListPage from './StudentListPage';
 
-class Dashboard extends Component {
-  render() {
-    return (
-      <div className='container-fluid'>
-        <Panel header="Student Management">
-          <StudentList />
-        </Panel>
-      </div>
-    );
-  }
+const Dashboard = () => {
+  return (
+    <div className='container-fluid'>
+      <StudentListPage />
+    </div>
+  );
 }
 
 export default Dashboard;

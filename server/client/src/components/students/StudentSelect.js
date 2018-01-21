@@ -15,9 +15,9 @@ export default ({ input, label, meta: { error, touched }, options }) => {
           })
         }
       </select>
-      <div className="text-danger">
+      <p className="text-danger">
         {touched && error}
-      </div>
+      </p>
     </div>
   );
 };

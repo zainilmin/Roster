@@ -6,7 +6,9 @@ const studentSchema = new Schema ({
   firstname: String,
   lastname: String,
   grade: Number,
-  section: String
+  section: String,
+  phone: String,
+  email: String
 //  attendance: [{
 //    classID: { type: Schema.Types.ObjectId, ref: 'ClassSchedule' },
 //    status: String,
