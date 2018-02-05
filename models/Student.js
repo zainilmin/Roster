@@ -9,11 +9,6 @@ const studentSchema = new Schema ({
   section: String,
   phone: String,
   email: String
-//  attendance: [{
-//    classID: { type: Schema.Types.ObjectId, ref: 'ClassSchedule' },
-//    status: String,
-//    comments: String
-//  }]
 });
 
 mongoose.model('students', studentSchema);

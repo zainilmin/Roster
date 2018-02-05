@@ -12,7 +12,7 @@ class StudentListPage extends Component {
   render() {
     const grades = [7, 8, 9, 10, 11, 12];
     return (
-      <div>
+      <div className='container-fluid'>
         <h3>Student List</h3>
         <StudentList students={this.props.students} grades={grades} />
       </div>

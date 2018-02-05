@@ -17,12 +17,22 @@ class Header extends Component {
         );
       default:
         return (
-          <Nav pullRight>
-            <LinkContainer to="/students/new">
-              <NavItem eventKey={1}>Add Student</NavItem>
-            </LinkContainer>
-            <NavItem eventKey={2} href="/api/logout">Logout</NavItem>
-          </Nav>
+          <Navbar.Collapse>
+            <Nav>
+              <LinkContainer to="/schedules">
+                <NavItem eventKey={1}>Class Schedule</NavItem>
+              </LinkContainer>
+            </Nav>
+            <Nav pullRight>
+              <LinkContainer to="/students/new">
+                <NavItem eventKey={1}>Add Student</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/schedule/new">
+                <NavItem eventKey={2}>Add Schedule</NavItem>
+              </LinkContainer>
+              <NavItem eventKey={3} href="/api/logout">Logout</NavItem>
+            </Nav>
+          </Navbar.Collapse>
         );
     }
   }

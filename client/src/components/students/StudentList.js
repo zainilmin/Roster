@@ -23,7 +23,6 @@ export default function StudentList({students, grades}) {
                 <thead>
                   <tr>
                     <th>Name</th>
-                    <th>Grade</th>
                     <th>Section</th>
                     <th>Phone</th>
                     <th>Email</th>

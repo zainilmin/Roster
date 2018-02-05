@@ -65,8 +65,8 @@ class StudentForm extends Component {
   render() {
     const { handleSubmit, pristine, submitting, student } = this.props;
     return (
-      <div>
-        <h1>{student._id ? 'Edit Student' : 'Add New Student'}</h1>
+      <div className='container-fluid'>
+        <h3>{student._id ? 'Edit Student' : 'Add New Student'}</h3>
         <form onSubmit={handleSubmit}>
           {this.renderFields()}
           {this.renderSelects()}
