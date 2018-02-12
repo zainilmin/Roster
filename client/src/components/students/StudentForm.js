@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
-import { Button, FormGroup, Col} from 'react-bootstrap'
+import { Button, FormGroup, Col } from 'react-bootstrap';
 import StudentField from './StudentField';
 import StudentSelect from './StudentSelect';
 import formFields from './formFields';

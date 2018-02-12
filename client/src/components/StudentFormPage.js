@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
- fetchStudent, saveStudent, newStudent, updateStudent
- } from '../actions';
+ fetchStudent, saveStudent, newStudent, updateStudent } from '../actions';
 import StudentForm from './students/StudentForm';
 
 class StudentFormPage extends Component {
@@ -17,7 +16,7 @@ class StudentFormPage extends Component {
     }
   }
 
-  submit =  (student) => {
+  submit = (student) => {
     if(!student._id) {
       return this.props.saveStudent(student, this.props.history);
     } else {

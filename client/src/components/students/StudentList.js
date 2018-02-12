@@ -3,7 +3,7 @@ import React from 'react';
 import { Tabs, Tab, Table } from 'react-bootstrap';
 import StudentItem from './StudentItem';
 
-export default function StudentList({students, grades}) {
+export default function StudentList({ students, grades }) {
 
   const studentList = (grade) => {
     return students.filter((item) => item.grade === grade).map(student => {

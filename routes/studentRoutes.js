@@ -18,7 +18,7 @@ module.exports = app => {
     const { firstname, lastname, grade, section, phone, email } = req.body;
 
     try {
-      const student =  new Student ({
+      const student = new Student({
         firstname: firstname,
         lastname: lastname,
         grade: grade,
@@ -46,7 +46,7 @@ module.exports = app => {
   app.post('/api/students/:id', requireLogin, (req, res) => {
     Student.findByIdAndUpdate({"_id": ObjectId(req.params.id)},
       req.body,
-      {new: true} ,
+      {new: true},
       (error, student) => {
         if(student) {
            res.send(student);
@@ -56,4 +56,4 @@ module.exports = app => {
       }
     );
   });
-};
+}

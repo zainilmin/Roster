@@ -14,9 +14,9 @@ const scheduleSchema = new Schema({
   class_date: Date,
   class_time: String,
   academic_year: String,
-  grade: String,
+  grade: Number,
   section: String,
   attendance: [studentRecord]
 });
 
-mongoose.model('schedule', scheduleSchema);
+mongoose.model('schedules', scheduleSchema);

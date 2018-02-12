@@ -28,7 +28,8 @@ export default function(state = defaultState, action) {
       const student = action.payload;
       return {
         ...state,
-        students: state.students.map(item => item._id === student._id ? student : item)
+        students: state.students.map(
+          item => item._id === student._id ? student : item)
       }
     default:
       return state;

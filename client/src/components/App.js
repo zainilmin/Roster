@@ -6,8 +6,8 @@ import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
+import Schedules from './Schedules';
 import StudentFormPage from './StudentFormPage';
-import ScheduleListPage from './ScheduleListPage';
 import ScheduleFormPage from './ScheduleFormPage';
 
 class App extends Component {
@@ -26,8 +26,9 @@ class App extends Component {
             <Route exact path="/students" component={Dashboard} />
             <Route path="/students/new" component={StudentFormPage} />
             <Route path="/students/edit/:_id" component={StudentFormPage} />
-            <Route path="/schedules" component={ScheduleListPage} />
-            <Route path="/schedule/new" component={ScheduleFormPage} />
+            <Route path="/schedule" component={Schedules} />
+            <Route path="/schedules/new" component={ScheduleFormPage} />
+            <Route path="/schedules/edit/:_id" component={ScheduleFormPage} />
           </div>
         </BrowserRouter>
       </div>
