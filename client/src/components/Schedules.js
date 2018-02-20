@@ -1,5 +1,5 @@
 import React from 'react';
-import ScheduleListPage from './ScheduleListPage';
+import ScheduleListPage from './pages/ScheduleListPage';
 
 const Schedules = () => {
   return (

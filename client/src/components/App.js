@@ -7,8 +7,9 @@ import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
 import Schedules from './Schedules';
-import StudentFormPage from './StudentFormPage';
-import ScheduleFormPage from './ScheduleFormPage';
+import StudentFormPage from './pages/StudentFormPage';
+import ScheduleFormPage from './pages/ScheduleFormPage';
+import Attendance from './Attendance';
 
 class App extends Component {
 
@@ -29,6 +30,7 @@ class App extends Component {
             <Route path="/schedule" component={Schedules} />
             <Route path="/schedules/new" component={ScheduleFormPage} />
             <Route path="/schedules/edit/:_id" component={ScheduleFormPage} />
+            <Route path="/attendance" component={Attendance} />
           </div>
         </BrowserRouter>
       </div>

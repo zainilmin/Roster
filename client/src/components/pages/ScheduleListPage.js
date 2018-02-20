@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Glyphicon } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import ScheduleList from './schedule/ScheduleList';
-import * as actions from '../actions';
+import ScheduleList from '../schedule/ScheduleList';
+import * as actions from '../../actions';
 
 class ScheduleListPage extends Component {
 

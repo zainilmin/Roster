@@ -66,6 +66,6 @@ export const newSchedule = () => async dispatch => {
 export const updateSchedule = (values, history) => async dispatch => {
   const res = await axios.post(`/api/schedules/${values._id}`, values);
 
-  history.push('/schedules');
+  history.push('/schedule');
   dispatch({ type: UPDATE_SCHEDULE , payload: res.data});
 }

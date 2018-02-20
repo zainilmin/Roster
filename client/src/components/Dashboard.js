@@ -1,5 +1,5 @@
 import React from 'react';
-import StudentListPage from './StudentListPage';
+import StudentListPage from './pages/StudentListPage';
 
 const Dashboard = () => {
   return (

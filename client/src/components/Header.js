@@ -23,6 +23,11 @@ class Header extends Component {
                 <NavItem eventKey={1}>Schedule</NavItem>
               </LinkContainer>
             </Nav>
+            <Nav>
+              <LinkContainer to="/attendance">
+                <NavItem eventKey={2}>Attendance</NavItem>
+              </LinkContainer>
+            </Nav>
             <Nav pullRight>
               <NavItem eventKey={1} href="/api/logout">Logout</NavItem>
             </Nav>
@@ -38,6 +43,7 @@ class Header extends Component {
           <Navbar.Brand>
             <Link to={this.props.auth ? '/students' : '/'}>Roster</Link>
           </Navbar.Brand>
+          <Navbar.Toggle />
         </Navbar.Header>
         {this.renderContent()}
       </Navbar>

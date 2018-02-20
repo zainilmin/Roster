@@ -7,12 +7,14 @@ import StudentSelect from '../students/StudentSelect';
 import formSelects from '../students/formSelects';
 import scheduleSelect from './formSelects';
 import SelectDatePicker from './SelectDatePicker';
+import moment from 'moment';
 
 class ScheduleForm extends Component {
 
   componentWillReceiveProps = (nextProps) => {
     const { schedule } = nextProps;
     if(schedule._id !== this.props.schedule._id) {
+      schedule.class_date = moment(schedule.class_date).format("MM/DD/YYYY");
       this.props.initialize(schedule);
     }
   }
@@ -87,8 +89,11 @@ function validate(values) {
    }
   });
 
+  if(!values["class_date"]) {
+    errors["class_date"] = "Please pick a date";
+  }
 
- return errors;
+  return errors;
 }
 
 export default reduxForm({

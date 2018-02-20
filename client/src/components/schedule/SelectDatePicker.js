@@ -10,7 +10,8 @@ export default ({ input, label, dateFormat, meta: { error, touched } }) => {
       <Col sm={3}><label>{label}</label></Col>
       <DatePicker {...input}
         dateFormat={dateFormat}
-        selected={input.value ? moment(input.value, dateFormat) : moment()} />
+        selected={input.value ? moment(input.value, dateFormat) : null}
+        />
       <p className="text-danger">
         {touched && error}
       </p>

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Glyphicon } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import StudentList from './students/StudentList.js';
-import * as actions from '../actions';
+import StudentList from '../students/StudentList.js';
+import * as actions from '../../actions';
 
 class StudentListPage extends Component {
 

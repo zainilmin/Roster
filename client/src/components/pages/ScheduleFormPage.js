@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
-  fetchSchedule, newSchedule, saveSchedule, updateSchedule } from '../actions';
-import ScheduleForm from './schedule/ScheduleForm';
+  fetchSchedule, newSchedule,
+  saveSchedule, updateSchedule } from '../../actions';
+import ScheduleForm from '../schedule/ScheduleForm';
 
 class ScheduleFormPage extends Component {
 
