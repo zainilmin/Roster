@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Glyphicon } from 'react-bootstrap';
@@ -11,8 +12,19 @@ class ScheduleListPage extends Component {
     this.props.fetchSchedules();
   }
 
+  getGradeSection(grades, sections) {
+    const arr = [];
+    _.each(grades, function(grade) {
+      _.each(sections, function(section) {
+        arr.push(grade + '-' + section);
+      })
+    })
+    return arr;
+  }
+
   render() {
     const grades = [7, 8, 9, 10, 11, 12];
+    const sections =["A", "B", "C"];
     return (
       <div className='container-fluid'>
         <h3>Class Schedule</h3>
@@ -21,7 +33,10 @@ class ScheduleListPage extends Component {
             <Glyphicon glyph="plus" />Add Schedule
           </Button>
         </LinkContainer>
-        <ScheduleList schedules={this.props.schedules} grades={grades} />
+        <ScheduleList
+          schedules={this.props.schedules}
+          grades={this.getGradeSection(grades, sections)}
+          />
       </div>
     )
   }

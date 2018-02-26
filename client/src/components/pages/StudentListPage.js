@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Glyphicon } from 'react-bootstrap';
@@ -11,8 +12,19 @@ class StudentListPage extends Component {
     this.props.fetchStudents();
   }
 
+  getGradeSection(grades, sections) {
+    const arr = [];
+    _.each(grades, function(grade) {
+      _.each(sections, function(section) {
+        arr.push(grade + '-' + section);
+      })
+    })
+    return arr;
+  }
+
   render() {
     const grades = [7, 8, 9, 10, 11, 12];
+    const sections =["A", "B", "C"];
     return (
       <div className='container-fluid'>
         <h3>Student List</h3>
@@ -21,7 +33,10 @@ class StudentListPage extends Component {
             <Glyphicon glyph="plus" />Add Student
           </Button>
         </LinkContainer>
-        <StudentList students={this.props.students} grades={grades} />
+        <StudentList
+          students={this.props.students}
+          grades={this.getGradeSection(grades, sections)}
+        />
       </div>
     );
   }

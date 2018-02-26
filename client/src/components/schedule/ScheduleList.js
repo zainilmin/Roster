@@ -5,16 +5,25 @@ import ScheduleItem from './ScheduleItem';
 
 export default function ScheduleList({ schedules, grades }) {
 
+  const sortList = (a, b) => {
+    if (a.class_date > b.class_date) return 1;
+    if (a.class_date < b.class_date) return -1;
+    return 0;
+  }
   const scheduleList = (grade) => {
-    return schedules.filter((item) => item.grade === grade).map(schedule => {
-      return (
-        <ScheduleItem key={schedule._id} schedule={schedule} />
-      )
-    });
+    const split_grade = grade.split('-');
+    return schedules.filter(
+      (item) => item.grade === Number(split_grade[0])
+      && item.section === split_grade[1]).sort(sortList).map(
+        schedule => {
+          return (
+           <ScheduleItem key={schedule._id} schedule={schedule} />
+          )
+      });
   }
 
   return (
-    <Tabs defaultActiveKey={7} id="schedule-tab">
+    <Tabs defaultActiveKey={"7-A"} id="schedule-tab">
     {
       _.map(grades, (grade) => {
         return (
@@ -24,7 +33,6 @@ export default function ScheduleList({ schedules, grades }) {
                 <tr>
                   <th>Class Date</th>
                   <th>Academic Year</th>
-                  <th>Section</th>
                 </tr>
               </thead>
               <tbody>

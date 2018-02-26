@@ -5,16 +5,27 @@ import StudentItem from './StudentItem';
 
 export default function StudentList({ students, grades }) {
 
+  const sortList = (a, b) => {
+    if(a.firstname < b.firstname) return -1;
+    if(a.firstname > b.firstname) return 1;
+    return 0;
+  }
+
+  const studentItem = (student) => {
+    return (
+      <StudentItem key={student._id} student={student} />
+    );
+  }
+
   const studentList = (grade) => {
-    return students.filter((item) => item.grade === grade).map(student => {
-      return (
-        <StudentItem key={student._id} student={student} />
-      )
-    });
+    const split_grade = grade.split('-');
+    return students.filter(
+     (item) => item.grade === Number(split_grade[0])
+      && item.section === split_grade[1]).sort(sortList).map(studentItem);
   }
 
   return (
-    <Tabs defaultActiveKey={7} id="class-tab">
+    <Tabs defaultActiveKey={"7-A"} id="class-tab">
       {
         _.map(grades, (grade) => {
           return (
@@ -23,7 +34,6 @@ export default function StudentList({ students, grades }) {
                 <thead>
                   <tr>
                     <th>Name</th>
-                    <th>Section</th>
                     <th>Phone</th>
                     <th>Email</th>
                   </tr>

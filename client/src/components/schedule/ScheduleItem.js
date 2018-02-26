@@ -11,7 +11,6 @@ export default function ScheduleItem({ schedule, grades }) {
         </Link>
       </td>
       <td>{schedule.academic_year}</td>
-      <td>{schedule.section}</td>
     </tr>
   )
 }

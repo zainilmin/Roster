@@ -9,7 +9,6 @@ export default function StudentItem({ student, grades }) {
           {student.firstname} {student.lastname}
         </Link>
       </td>
-      <td>{student.section}</td>
       <td>{student.phone}</td>
       <td>{student.email}</td>
     </tr>
