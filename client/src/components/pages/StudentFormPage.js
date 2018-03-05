@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { Row, Col, Grid } from 'react-bootstrap';
 import {
  fetchStudent, saveStudent, newStudent, updateStudent } from '../../actions';
 import StudentForm from '../students/StudentForm';
@@ -26,9 +27,13 @@ class StudentFormPage extends Component {
 
   render() {
     return (
-      <div className='container-fluid'>
-        <StudentForm student={this.props.student} onSubmit={this.submit} />
-      </div>
+      <Grid fluid>
+        <Row>
+          <Col sm={8}>
+            <StudentForm student={this.props.student} onSubmit={this.submit} />
+          </Col>
+        </Row>
+      </Grid>
     )
   }
 }

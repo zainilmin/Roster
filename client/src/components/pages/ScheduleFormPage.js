@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { Row, Col, Grid } from 'react-bootstrap';
 import {
   fetchSchedule, newSchedule,
   saveSchedule, updateSchedule } from '../../actions';
@@ -27,9 +28,16 @@ class ScheduleFormPage extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
-        <ScheduleForm schedule={this.props.schedule} onSubmit={this.submit} />
-      </div>
+      <Grid fluid>
+        <Row>
+          <Col sm={8}>
+            <ScheduleForm
+              schedule={this.props.schedule}
+              onSubmit={this.submit}
+            />
+          </Col>
+        </Row>
+      </Grid>
     )
   }
 }

@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
-import { Button, FormGroup, Col } from 'react-bootstrap';
+import { Button, FormGroup, Col, Panel } from 'react-bootstrap';
 import StudentField from './StudentField';
 import StudentSelect from './StudentSelect';
 import formFields from './formFields';
@@ -51,7 +51,7 @@ class StudentForm extends Component {
     return (
       <FormGroup>
         <Col sm={3} />
-        <Col>
+        <Col sm={5}>
           <Button
             type='submit'
             disabled={pristine || submitting}
@@ -65,14 +65,13 @@ class StudentForm extends Component {
   render() {
     const { handleSubmit, pristine, submitting, student } = this.props;
     return (
-      <div className='container-fluid'>
-        <h3>{student._id ? 'Edit Student' : 'Add New Student'}</h3>
+      <Panel header={student._id ? 'Edit Student' : 'Add Student'}>
         <form onSubmit={handleSubmit}>
           {this.renderFields()}
           {this.renderSelects()}
           {this.renderButtons(pristine, submitting)}
         </form>
-      </div>
+      </Panel>
     )
   }
 }
@@ -92,8 +91,8 @@ function validate(values) {
     }
     });
 
-  if(!/^\+(?:[0-9] ?){6,14}[0-9]$/.test(values["phone"])) {
-    errors['phone'] = 'Phone number must be in International format';
+  if(!/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(values["phone"])) {
+    errors['phone'] = 'Phone number must be in 000-000-0000 format';
   }
   if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values['email'])) {
     errors['email'] = 'Invalid email address';

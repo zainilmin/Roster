@@ -1,14 +1,16 @@
 import React from 'react';
-import { Col } from 'react-bootstrap';
+import { Col, Row, ControlLabel } from 'react-bootstrap';
 
 export default ({ input, label, meta: { error, touched } }) => {
   return (
-    <div>
-      <Col sm={3}><label>{label}</label></Col>
-      <input {...input} />
-      <p className="text-danger">
-        {touched && error}
-      </p>
-    </div>
+    <Row>
+      <Col sm={3}><ControlLabel>{label}</ControlLabel></Col>
+      <Col sm={5}>
+        <input {...input} />
+        <p className="text-danger">
+          {touched && error}
+        </p>
+      </Col>
+    </Row>
   );
 }

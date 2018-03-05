@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
-import { Tabs, Tab, Table } from 'react-bootstrap';
+import { Tab, Table, Row, Col, Nav, NavItem } from 'react-bootstrap';
 import StudentItem from './StudentItem';
 
 export default function StudentList({ students, grades }) {
@@ -25,27 +25,44 @@ export default function StudentList({ students, grades }) {
   }
 
   return (
-    <Tabs defaultActiveKey={"7-A"} id="class-tab">
-      {
-        _.map(grades, (grade) => {
-          return (
-            <Tab eventKey={grade} title={grade} key={grade}>
-              <Table condensed hover>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {studentList(grade)}
-                </tbody>
-              </Table>
-            </Tab>
-          );
-        })
-      }
-    </Tabs>
+    <Tab.Container defaultActiveKey={"7-A"} id="class-tab">
+      <Row>
+        <Col sm={1}>
+          <Nav bsStyle="pills" stacked>
+            {
+              _.map(grades, (grade) => {
+                return (
+                  <NavItem eventKey={grade} key={grade}>{grade}</NavItem>
+                );
+              })
+            }
+          </Nav>
+        </Col>
+        <Col sm={11}>
+          <Tab.Content animation>
+            {
+              _.map(grades, (grade) => {
+                return (
+                  <Tab.Pane eventKey={grade} key={grade}>
+                    <Table condensed hover>
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Phone</th>
+                          <th>Email</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {studentList(grade)}
+                      </tbody>
+                   </Table>
+                  </Tab.Pane>
+                );
+              })
+            }
+          </Tab.Content>
+        </Col>
+      </Row>
+    </Tab.Container>
   );
 }

@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
-import { Button, FormGroup, Col } from 'react-bootstrap';
+import { Button, FormGroup, Col, Panel } from 'react-bootstrap';
 import StudentSelect from '../students/StudentSelect';
 import formSelects from '../students/formSelects';
 import scheduleSelect from './formSelects';
@@ -53,7 +53,7 @@ class ScheduleForm extends Component {
     return (
       <FormGroup>
         <Col sm={3} />
-        <Col>
+        <Col sm={5}>
           <Button
             type='submit'
             disabled={pristine || submitting}
@@ -67,14 +67,13 @@ class ScheduleForm extends Component {
   render() {
    const { handleSubmit, pristine, submitting, schedule } = this.props;
     return (
-      <div className='container-fluid'>
-        <h3>{schedule._id ? 'Edit Class' : 'Add Class'}</h3>
+      <Panel header={schedule._id ? 'Edit Schedule' : 'Add Schedule'}>
         <form onSubmit={handleSubmit}>
           {this.renderDatePicker()}
           {this.renderSelects()}
           {this.renderButtons(pristine, submitting)}
         </form>
-      </div>
+      </Panel>
     )
   }
 }

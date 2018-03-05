@@ -10,7 +10,7 @@ export default function ScheduleItem({ schedule, grades }) {
           {moment(schedule.class_date).format("MM/DD/YYYY")}
         </Link>
       </td>
-      <td>{schedule.academic_year}</td>
+      <td>{schedule.class_time}</td>
     </tr>
   )
 }
