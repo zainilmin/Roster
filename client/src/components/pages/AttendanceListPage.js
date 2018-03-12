@@ -1,21 +1,88 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Panel, Row, Col, Grid, Table, ControlLabel } from 'react-bootstrap';
 import AttendanceList from '../attendance/AttendanceList';
 import * as actions from '../../actions';
+import studentSelect from '../students/formSelects';
+import scheduleSelect from '../schedule/formSelects';
 
 class AttendanceListPage extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      grades: studentSelect[0]["options"],
+      sections: studentSelect[1]["options"],
+      academic_year: scheduleSelect[1],
+      academic_year_value: scheduleSelect[1]["options"][0]
+    };
+  }
 
   componentDidMount() {
     this.props.fetchSchedules();
   }
 
-  render() {
-    const grades = [7, 8, 9, 10, 11, 12];
+  getGradeSection(grades, sections) {
+    const arr = [];
+    _.each(grades, function(grade) {
+      _.each(sections, function(section) {
+        arr.push(grade + '-' + section);
+      })
+    })
+    return arr;
+  }
+
+  onAcademicYearChange = (e) => {
+    this.setState({academic_year_value: e.target.value});
+  }
+
+  academicYearDropDown() {
     return (
-      <div className='container-fluid'>
-        <h3>Attendance</h3>
-        <AttendanceList schedules={this.props.schedules} grades={grades} />
-      </div>
+      <Table>
+        <tbody>
+          <tr>
+            <td>
+              <ControlLabel>{this.state.academic_year["label"]}</ControlLabel>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <select
+                name={this.state.academic_year["name"]}
+                defaultValue={this.state.academic_year_value}
+                onChange={this.onAcademicYearChange}>
+                { _.map(this.state.academic_year["options"], (item) => {
+                    return (
+                      <option key={item} value={item}>{item}</option>
+                    );
+                  })
+                }
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </Table>
+    )
+  }
+
+  render() {
+    return (
+      <Grid fluid>
+        <Row>
+          <Col sm={12}>
+            <Panel header="Attendance">
+              {this.academicYearDropDown()}
+              <AttendanceList
+                schedules={this.props.schedules}
+                grades={this.getGradeSection(
+                  this.state.grades, this.state.sections)}
+                academic_year={this.state.academic_year_value}
+              />
+            </Panel>
+          </Col>
+        </Row>
+      </Grid>
     )
   }
 }

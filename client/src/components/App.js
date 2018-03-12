@@ -7,9 +7,10 @@ import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
 import Schedules from './Schedules';
+import Attendance from './Attendance';
 import StudentFormPage from './pages/StudentFormPage';
 import ScheduleFormPage from './pages/ScheduleFormPage';
-import Attendance from './Attendance';
+import AttendanceFormPage from './pages/AttendanceFormPage';
 
 class App extends Component {
 
@@ -27,10 +28,12 @@ class App extends Component {
             <Route exact path="/students" component={Dashboard} />
             <Route path="/students/new" component={StudentFormPage} />
             <Route path="/students/edit/:_id" component={StudentFormPage} />
-            <Route path="/schedule" component={Schedules} />
+            <Route exact path="/schedules" component={Schedules} />
             <Route path="/schedules/new" component={ScheduleFormPage} />
             <Route path="/schedules/edit/:_id" component={ScheduleFormPage} />
-            <Route path="/attendance" component={Attendance} />
+            <Route exact path="/attendance" component={Attendance} />
+            <Route path="/attendance/edit/:_id"
+              component={AttendanceFormPage} />
           </div>
         </BrowserRouter>
       </div>

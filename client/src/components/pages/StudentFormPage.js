@@ -29,7 +29,7 @@ class StudentFormPage extends Component {
     return (
       <Grid fluid>
         <Row>
-          <Col sm={8}>
+          <Col sm={6}>
             <StudentForm student={this.props.student} onSubmit={this.submit} />
           </Col>
         </Row>

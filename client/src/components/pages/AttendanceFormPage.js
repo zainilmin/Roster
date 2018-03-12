@@ -2,28 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Row, Col, Grid } from 'react-bootstrap';
-import {
-  fetchSchedule, newSchedule,
-  saveSchedule, updateSchedule } from '../../actions';
-import ScheduleForm from '../schedule/ScheduleForm';
+import { fetchStudents, fetchSchedule, updateSchedule } from '../../actions';
+import AttendanceForm from '../attendance/AttendanceForm';
 
-class ScheduleFormPage extends Component {
+class AttendanceFormPage extends Component {
 
   componentDidMount = () => {
     const { _id } = this.props.match.params;
     if(_id) {
       this.props.fetchSchedule(_id);
-    } else {
-      this.props.newSchedule();
+      this.props.fetchStudents();
     }
   }
 
   submit = (schedule) => {
-    if(!schedule._id) {
-      return this.props.saveSchedule(schedule, this.props.history);
-    } else {
-      return this.props.updateSchedule(schedule, this.props.history);
-    }
+    return this.props.updateSchedule(schedule, this.props.history);
   }
 
   render() {
@@ -31,8 +24,9 @@ class ScheduleFormPage extends Component {
       <Grid fluid>
         <Row>
           <Col sm={6}>
-            <ScheduleForm
+            <AttendanceForm
               schedule={this.props.schedule}
+              students={this.props.students}
               onSubmit={this.submit}
             />
           </Col>
@@ -44,11 +38,11 @@ class ScheduleFormPage extends Component {
 
 function mapStateToProps(state) {
   return {
-    schedule: state.scheduleStore.schedule
+    schedule: state.scheduleStore.schedule,
+    students: state.studentStore.students
   }
 }
 
 export default connect(
   mapStateToProps,
-  { newSchedule, saveSchedule,
-    fetchSchedule, updateSchedule })(withRouter(ScheduleFormPage));
+  { fetchStudents, fetchSchedule, updateSchedule })(withRouter(AttendanceFormPage));

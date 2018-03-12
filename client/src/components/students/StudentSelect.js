@@ -6,8 +6,8 @@ export default ({ input, label, meta: { error, touched }, options }) => {
   return (
     <Row>
       <Col sm={3}><ControlLabel>{label}</ControlLabel></Col>
-      <Col sm={5}>
-        <select {...input} >
+      <Col sm={3}>
+        <select {...input} className='form-control' >
           <option />
           { _.map(options, (item) => {
               return (

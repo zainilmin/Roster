@@ -53,7 +53,7 @@ class ScheduleForm extends Component {
     return (
       <FormGroup>
         <Col sm={3} />
-        <Col sm={5}>
+        <Col sm={4}>
           <Button
             type='submit'
             disabled={pristine || submitting}

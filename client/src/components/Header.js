@@ -19,7 +19,12 @@ class Header extends Component {
         return (
           <Navbar.Collapse>
             <Nav>
-              <LinkContainer to="/schedule">
+              <LinkContainer to="/students">
+                <NavItem eventKey={1}>Student</NavItem>
+              </LinkContainer>
+            </Nav>
+            <Nav>
+              <LinkContainer to="/schedules">
                 <NavItem eventKey={1}>Schedule</NavItem>
               </LinkContainer>
             </Nav>
@@ -41,7 +46,7 @@ class Header extends Component {
       <Navbar fluid>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to={this.props.auth ? '/students' : '/'}>Roster</Link>
+            <Link to='/'>Roster</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
