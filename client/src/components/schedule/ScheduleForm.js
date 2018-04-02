@@ -58,11 +58,11 @@ class ScheduleForm extends Component {
             type='submit'
             disabled={pristine || submitting}
             className='btn btn-primary'>Save</Button>
-          <Link to="/schedule" className='btn btn-link'>Cancel</Link>
+          <Link to="/schedules" className='btn btn-link'>Cancel</Link>
         </Col>
       </FormGroup>
     );
-    }
+  }
 
   render() {
    const { handleSubmit, pristine, submitting, schedule } = this.props;

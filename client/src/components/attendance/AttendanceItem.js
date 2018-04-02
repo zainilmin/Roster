@@ -6,7 +6,7 @@ export default function AttendanceItem({ schedule, grades }) {
   return (
     <tr key={schedule._id}>
       <td>
-        <Link to={`/attendance/edit/${schedule._id}`}>
+        <Link to={`/attendance/edit/${schedule.grade}/${schedule.section}/${schedule._id}`}>
           {moment(schedule.class_date).format("MM/DD/YYYY")}
         </Link>
       </td>

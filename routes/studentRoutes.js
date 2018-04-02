@@ -56,4 +56,32 @@ module.exports = app => {
       }
     );
   });
+
+  app.get('/api/students/:grade/:section', requireLogin, (req, res) => {
+    const studentArr = [];
+    Student.find(
+      {$and: [{"grade": req.params.grade},
+              {"section": req.params.section}]}
+    ).sort( { firstname: 1 }
+    ).then(
+      (students) => {
+        for(var i=0; i < students.length; i++) {
+          var student = {
+            "student_id": students[i]._id,
+            "firstname": students[i].firstname,
+            "lastname": students[i].lastname,
+            "status": "",
+            "reason": "",
+            "comments": ""
+          }
+          studentArr.push(student);
+        }
+        if (studentArr.length > 0) {
+          res.send(studentArr);
+        } else {
+          throw error;
+        }
+      }
+    );
+  });
 }

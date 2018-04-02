@@ -32,7 +32,7 @@ class App extends Component {
             <Route path="/schedules/new" component={ScheduleFormPage} />
             <Route path="/schedules/edit/:_id" component={ScheduleFormPage} />
             <Route exact path="/attendance" component={Attendance} />
-            <Route path="/attendance/edit/:_id"
+            <Route path="/attendance/edit/:grade/:section/:_id"
               component={AttendanceFormPage} />
           </div>
         </BrowserRouter>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {
  FETCH_USER, FETCH_STUDENTS, FETCH_STUDENT, NEW_STUDENT, UPDATE_STUDENT,
- FETCH_SCHEDULES, FETCH_SCHEDULE, NEW_SCHEDULE, UPDATE_SCHEDULE,
+ FETCH_SCHEDULES, FETCH_SCHEDULE, NEW_SCHEDULE, UPDATE_SCHEDULE
  } from './types';
 
 export const fetchUser = () => async dispatch => {
@@ -40,10 +40,16 @@ export const updateStudent = (values, history) => async dispatch => {
   dispatch({ type: UPDATE_STUDENT , payload: res.data});
 }
 
+export const fetchStudentsByClass = (grade, section) => async dispatch => {
+  const res = await axios.get(`/api/students/${grade}/${section}`);
+
+  dispatch({ type:FETCH_STUDENTS, payload: res.data });
+}
+
 export const saveSchedule = (values, history) => async dispatch => {
   const res = await axios.post('/api/schedules', values);
 
-  history.push('/schedule');
+  history.push('/schedules');
   dispatch({ type: FETCH_USER, payload: res.data });
 }
 
@@ -66,6 +72,6 @@ export const newSchedule = () => async dispatch => {
 export const updateSchedule = (values, history) => async dispatch => {
   const res = await axios.post(`/api/schedules/${values._id}`, values);
 
-  history.push('/schedule');
+  history.push('/schedules');
   dispatch({ type: UPDATE_SCHEDULE , payload: res.data});
 }

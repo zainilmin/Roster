@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } =  mongoose;
 
 const studentRecord = new Schema({
-  studentid: Schema.Types.ObjectId,
+  student_id: Schema.Types.ObjectId,
   firstname: String,
   lastname: String,
   status: String,
