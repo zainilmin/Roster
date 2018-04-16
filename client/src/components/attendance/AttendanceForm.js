@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
-import { reduxForm } from 'redux-form';
+import { reduxForm, FieldArray } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { Button, FormGroup, Col } from 'react-bootstrap';
 import AttendanceFormRow from './AttendanceFormRow';
 
 class AttendanceForm extends Component {
-
-  componentWillReceiveProps = (nextProps) => {
-    const { students } = nextProps;
-    this.props.initialize(students);
-  }
 
   renderButtons(pristine, submitting) {
     return (
@@ -26,16 +21,18 @@ class AttendanceForm extends Component {
   }
 
   render() {
-    const { handleSubmit, pristine, submitting, students } = this.props;
+    const { handleSubmit, pristine, submitting } = this.props;
     return (
-      <form onSubmit={handleSubmit}>
-        <AttendanceFormRow key="attendance" students={students} />
+      <form onSubmit={ handleSubmit }>
+        <FieldArray
+          name="attendance"
+          component={AttendanceFormRow} />
         {this.renderButtons(pristine, submitting)}
       </form>
     )
   }
 }
 
-export default reduxForm({
-  form: 'AttendanceForm'
-})(AttendanceForm);
+export default reduxForm(
+  {form: 'AttendanceForm',
+   enableReinitialize: true})(AttendanceForm);

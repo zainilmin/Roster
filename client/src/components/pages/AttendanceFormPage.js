@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Row, Col, Grid, Panel } from 'react-bootstrap';
-import { fetchStudentsByClass, fetchSchedule } from '../../actions';
+import { fetchSchedule, fetchAttendance } from '../../actions';
 import AttendanceForm from '../attendance/AttendanceForm';
 import moment from 'moment';
 
@@ -12,17 +12,16 @@ class AttendanceFormPage extends Component {
     const { _id, grade, section } = this.props.match.params;
     if(_id) {
       this.props.fetchSchedule(_id);
-      this.props.fetchStudentsByClass(grade, section);
+      this.props.fetchAttendance(grade, section, _id);
     }
   }
 
-  submit = (student) => {
-    console.log(student);
-    //return this.props.updateSchedule(schedule, this.props.history);
+  submit = (attendance) => {
+    console.log(attendance);
   }
 
   render() {
-    const { schedule } = this.props;
+    const { schedule, attendance } = this.props;
     return (
       <Grid fluid>
         <Row>
@@ -60,8 +59,9 @@ class AttendanceFormPage extends Component {
                 <tbody />
               </table>
               <AttendanceForm
-                students={this.props.students}
+                attendance={this.props.attendance}
                 onSubmit={this.submit}
+                initialValues={{"attendance": attendance}}
               />
             </Panel>
           </Col>
@@ -74,10 +74,10 @@ class AttendanceFormPage extends Component {
 function mapStateToProps(state) {
   return {
     schedule: state.scheduleStore.schedule,
-    students: state.studentStore.students
+    attendance: state.attendanceStore.attendance
   }
 }
 
 export default connect(
   mapStateToProps,
-  { fetchStudentsByClass, fetchSchedule })(withRouter(AttendanceFormPage));
+  { fetchSchedule, fetchAttendance })(withRouter(AttendanceFormPage));

@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
+import { Field } from 'redux-form';
 import { FormGroup, Col, Row } from 'react-bootstrap';
 const statusSelects = ['P', 'A', 'T'];
 const reasonSelects = [
@@ -12,14 +13,16 @@ const reasonSelects = [
                         { name: 'Other', value: 'O'}
                       ];
 
-export default function AttendanceFormRow({ students }) {
-  return _.map(students, student => {
+export default function AttendanceFormRow({ fields }) {
+  return fields.getAll().map((student, idx) => {
+    const student_value = fields.get(idx);
     return (
-      <Row key={student.student_id}>
-        <FormGroup key={student.student_id}>
-          <Col sm={3}>{student.firstname} {student.lastname}</Col>
+      <Row key={student_value.student_id}>
+        <FormGroup key={student_value.student_id}>
+          <Col sm={3}>{student_value.firstname} {student_value.lastname}</Col>
           <Col sm={3}>
-            <select name="status" className='form-control' >
+            <select name={ student_value.status }
+              className='form-control'>
               <option />
               { _.map(statusSelects, (item) => {
                   return (
@@ -30,7 +33,8 @@ export default function AttendanceFormRow({ students }) {
             </select>
           </Col>
           <Col sm={3}>
-            <select name="reason" className='form-control' >
+            <select name={ student_value.reason }
+              className='form-control'>
               <option />
               { _.map(reasonSelects, ({value, name}) => {
                   return (
@@ -41,7 +45,9 @@ export default function AttendanceFormRow({ students }) {
             </select>
           </Col>
           <Col sm={3}>
-            <input name="comments" className='form-control' />
+            <Field key={student_value.student_id}
+              name={ student_value.comments }
+              component="input" />
           </Col>
         </FormGroup>
       </Row>
