@@ -2,7 +2,7 @@ import axios from 'axios';
 import {
  FETCH_USER, FETCH_STUDENTS, FETCH_STUDENT, NEW_STUDENT, UPDATE_STUDENT,
  FETCH_SCHEDULES, FETCH_SCHEDULE, NEW_SCHEDULE, UPDATE_SCHEDULE,
- FETCH_ATTENDANCE
+ FETCH_ATTENDANCE, UPDATE_ATTENDANCE
  } from './types';
 
 export const fetchUser = () => async dispatch => {
@@ -75,4 +75,12 @@ export const fetchAttendance = (grade, section, id) => async dispatch => {
   const res = await axios.get(`/api/attendance/${grade}/${section}/${id}`);
 
   dispatch({ type:FETCH_ATTENDANCE, payload: res.data });
+}
+
+export const updateAttendance = (values, grade, section, id, history) => async dispatch => {
+  const res = await axios.post(
+    `/api/attendance/${grade}/${section}/${id}`, values);
+
+  history.push('/attendance');
+  dispatch({ type: UPDATE_ATTENDANCE, payload: res.data});
 }

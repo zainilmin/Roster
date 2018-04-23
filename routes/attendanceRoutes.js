@@ -42,4 +42,11 @@ module.exports = app => {
       }
     });
   });
+
+  app.post('/api/attendance/:grade/:section/:id', requireLogin, (req, res) => {
+    const { attendance } = req.body;
+    console.log(attendance);
+
+
+  })
 }

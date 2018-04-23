@@ -1,5 +1,5 @@
 import {
-  FETCH_ATTENDANCE
+  FETCH_ATTENDANCE, UPDATE_ATTENDANCE
   } from '../actions/types'
 
 const defaultState = {
@@ -12,6 +12,12 @@ export default function(state = defaultState, action) {
       return {
         ...state,
         attendance: action.payload
+      }
+    case UPDATE_ATTENDANCE:
+      const attendance = action.payload;
+      return {
+        ...state,
+        attendance: attendance
       }
     default:
       return state;

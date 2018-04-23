@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Row, Col, Grid, Panel } from 'react-bootstrap';
-import { fetchSchedule, fetchAttendance } from '../../actions';
+import { fetchSchedule, fetchAttendance,
+  updateAttendance } from '../../actions';
 import AttendanceForm from '../attendance/AttendanceForm';
 import moment from 'moment';
 
@@ -17,7 +18,10 @@ class AttendanceFormPage extends Component {
   }
 
   submit = (attendance) => {
+    const { _id, grade, section } = this.props.match.params;
     console.log(attendance);
+    return this.props.updateAttendance(
+      attendance, grade, section, _id, this.props.history);
   }
 
   render() {
@@ -59,9 +63,8 @@ class AttendanceFormPage extends Component {
                 <tbody />
               </table>
               <AttendanceForm
-                attendance={this.props.attendance}
                 onSubmit={this.submit}
-                initialValues={{"attendance": attendance}}
+                initialValues={{attendance: attendance}}
               />
             </Panel>
           </Col>
@@ -80,4 +83,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { fetchSchedule, fetchAttendance })(withRouter(AttendanceFormPage));
+  { fetchSchedule,
+    fetchAttendance, updateAttendance })(withRouter(AttendanceFormPage));
