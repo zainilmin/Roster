@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Row, Col, Grid, Panel } from 'react-bootstrap';
-import { fetchSchedule, fetchAttendance,
+import { fetchSchedule, fetchAttendance, saveAttendance,
   updateAttendance } from '../../actions';
 import AttendanceForm from '../attendance/AttendanceForm';
 import moment from 'moment';
@@ -13,19 +13,20 @@ class AttendanceFormPage extends Component {
     const { _id, grade, section } = this.props.match.params;
     if(_id) {
       this.props.fetchSchedule(_id);
+      this.props.saveAttendance(grade, section, _id);
       this.props.fetchAttendance(grade, section, _id);
     }
   }
 
   submit = (attendance) => {
     const { _id, grade, section } = this.props.match.params;
-    console.log(attendance);
     return this.props.updateAttendance(
       attendance, grade, section, _id, this.props.history);
   }
 
   render() {
     const { schedule, attendance } = this.props;
+
     return (
       <Grid fluid>
         <Row>
@@ -43,7 +44,7 @@ class AttendanceFormPage extends Component {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>{moment(schedule.class_date).format("MM/DD/YYYY")}</td>
+                    <td>{moment(schedule.class_date).format("MM-DD-YYYY")}</td>
                     <td>{schedule.class_time}</td>
                     <td>{schedule.academic_year}</td>
                     <td>{schedule.grade}</td>
@@ -83,5 +84,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { fetchSchedule,
-    fetchAttendance, updateAttendance })(withRouter(AttendanceFormPage));
+  { fetchSchedule, fetchAttendance,
+    saveAttendance, updateAttendance })(withRouter(AttendanceFormPage));

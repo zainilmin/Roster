@@ -11,15 +11,15 @@ const renderAttendance = ({ fields }) => (
       const value = fields.get(index);
       return (
         <AttendanceFormRow
-          name={ student }
-          value={ value }
-          index={ index }
-          key={ index }/>
+          name={student}
+          value={value}
+          index={index}
+          key={index}/>
       )
     })
   }
   </div>
-)
+);
 
 const AttendanceForm = ({ handleSubmit, pristine, submitting }) => (
   <form onSubmit={ handleSubmit }>

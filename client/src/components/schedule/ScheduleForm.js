@@ -14,7 +14,7 @@ class ScheduleForm extends Component {
   componentWillReceiveProps = (nextProps) => {
     const { schedule } = nextProps;
     if(schedule._id !== this.props.schedule._id) {
-      schedule.class_date = moment(schedule.class_date).format("MM/DD/YYYY");
+      schedule.class_date = moment(schedule.class_date).format("MM-DD-YYYY");
       this.props.initialize(schedule);
     }
   }
@@ -27,7 +27,7 @@ class ScheduleForm extends Component {
           component={SelectDatePicker}
           label="Class Date"
           name="class_date"
-          dateFormat="MM/DD/YYYY"
+          dateFormat="MM-DD-YYYY"
         />
       </FormGroup>
     );

@@ -8,4 +8,5 @@ export const FETCH_SCHEDULE = 'fetch_schedule';
 export const NEW_SCHEDULE = 'new_schedule';
 export const UPDATE_SCHEDULE = 'update_schedule';
 export const FETCH_ATTENDANCE = 'fetch_attendance';
+export const SAVE_ATTENDANCE = 'save_attendance';
 export const UPDATE_ATTENDANCE = 'update_attendance';
