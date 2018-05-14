@@ -9,10 +9,13 @@ const defaultState = {
 export default function(state = defaultState, action) {
   switch (action.type) {
     case FETCH_ATTENDANCE:
-    case SAVE_ATTENDANCE:
       return {
         ...state,
         attendance: action.payload
+      }
+    case SAVE_ATTENDANCE:
+      return {
+        ...state
       }
     case UPDATE_ATTENDANCE:
       const attendance = action.payload;

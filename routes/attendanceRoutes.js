@@ -42,16 +42,7 @@ module.exports = app => {
                   });
                   attendance.save();
                 }
-                Attendance.find(
-                  {"schedule_id": ObjectId(req.params.id)},
-                  (error, record) => {
-                    if (!error) {
-                      res.send(record);
-                    } else {
-                      throw error;
-                    }
-                  }
-                  ).sort({ firstname: 1 });
+                res.send("saved attendance");
               }
             );
           }

@@ -12,7 +12,7 @@ class Header extends Component {
       case false:
         return (
           <Nav pullRight>
-            <NavItem eventKey={2} href="/auth/google">Login with Google</NavItem>
+            <NavItem eventKey={1} href="/auth/google">Login with Google</NavItem>
           </Nav>
         );
       default:
@@ -20,21 +20,21 @@ class Header extends Component {
           <Navbar.Collapse>
             <Nav>
               <LinkContainer to="/students">
-                <NavItem eventKey={1}>Student</NavItem>
+                <NavItem eventKey={2}>Student</NavItem>
               </LinkContainer>
             </Nav>
             <Nav>
               <LinkContainer to="/schedules">
-                <NavItem eventKey={1}>Schedule</NavItem>
+                <NavItem eventKey={3}>Schedule</NavItem>
               </LinkContainer>
             </Nav>
             <Nav>
               <LinkContainer to="/attendance">
-                <NavItem eventKey={2}>Attendance</NavItem>
+                <NavItem eventKey={4}>Attendance</NavItem>
               </LinkContainer>
             </Nav>
             <Nav pullRight>
-              <NavItem eventKey={1} href="/api/logout">Logout</NavItem>
+              <NavItem eventKey={5} href="/api/logout">Logout</NavItem>
             </Nav>
           </Navbar.Collapse>
         );
@@ -60,4 +60,4 @@ function mapStateToProps({ auth }) {
   return { auth };
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, null, null, {pure: false})(Header);
