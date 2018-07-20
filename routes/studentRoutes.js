@@ -15,7 +15,14 @@ module.exports = app => {
   });
 
   app.post('/api/students', requireLogin, (req, res) => {
-    const { firstname, lastname, grade, section, phone, email } = req.body;
+    const { firstname,
+            lastname,
+            grade,
+            section,
+            phone,
+            email,
+            gender,
+            birth_date } = req.body;
 
     try {
       const student = new Student({
@@ -24,7 +31,9 @@ module.exports = app => {
         grade: grade,
         section: section,
         phone: phone,
-        email: email
+        email: email,
+        gender: gender,
+        birth_date: birth_date
       });
       student.save();
       res.send(student);

@@ -8,15 +8,5 @@ export default [
     label: 'Last Name',
     name: 'lastname',
     emptyValueError: 'Please provide Last Name'
-  },
-  {
-    label: 'Phone',
-    name: 'phone',
-    emptyValueError: 'Please provide Phone Number'
-  },
-  {
-    label: 'Email',
-    name: 'email',
-    emptyValueError: 'Please provide Email'
   }
 ];

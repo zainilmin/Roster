@@ -1,13 +1,12 @@
 import _ from 'lodash';
+import moment from 'moment';
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
-import { Button, FormGroup, Col, Panel } from 'react-bootstrap';
+import { Button, FormGroup, Col, Panel, Row } from 'react-bootstrap';
 import StudentSelect from '../students/StudentSelect';
-import formSelects from '../students/formSelects';
 import scheduleSelect from './formSelects';
 import SelectDatePicker from './SelectDatePicker';
-import moment from 'moment';
 
 class ScheduleForm extends Component {
 
@@ -21,7 +20,7 @@ class ScheduleForm extends Component {
 
   renderDatePicker() {
     return (
-      <FormGroup>
+      <FormGroup className="col-md-12">
         <Field
           key="class_date"
           component={SelectDatePicker}
@@ -34,10 +33,9 @@ class ScheduleForm extends Component {
   }
 
   renderSelects() {
-    const selectList = [...scheduleSelect, ...formSelects];
-    return _.map(selectList, ({ label, name, options }) => {
+    return _.map(scheduleSelect, ({ label, name, options }) => {
       return (
-        <FormGroup key={name}>
+        <FormGroup className="col-md-3" key={name}>
           <Field
            name={name}
            key={name}
@@ -69,9 +67,11 @@ class ScheduleForm extends Component {
     return (
       <Panel header={schedule._id ? 'Edit Schedule' : 'Add Schedule'}>
         <form onSubmit={handleSubmit}>
-          {this.renderDatePicker()}
-          {this.renderSelects()}
-          {this.renderButtons(pristine, submitting)}
+          <Row className="form-row">{this.renderDatePicker()}</Row>
+          <Row className="form-row">{this.renderSelects()}</Row>
+          <Row className="form-row">
+           {this.renderButtons(pristine, submitting)}
+          </Row>
         </form>
       </Panel>
     )
@@ -80,9 +80,8 @@ class ScheduleForm extends Component {
 
 function validate(values) {
   const errors = {};
-  const selectList = [...scheduleSelect, ...formSelects];
 
-  _.each(selectList, ({ name, emptyValueError }) => {
+  _.each(scheduleSelect, ({ name, emptyValueError }) => {
    if(!values[name]) {
      errors[name] = emptyValueError;
    }

@@ -10,5 +10,16 @@ export default [
    name: 'academic_year',
    options: ['2018-2019', '2019-2020', '2020-2021'],
    emptyValueError: 'Please select Academic Year'
-  }
+  },
+  { label: 'Grade',
+    name: 'grade',
+    options: [7, 8, 9, 10, 11, 12],
+    emptyValueError: 'Please select grade'
+  },
+  {
+   label: 'Section',
+   name: 'section',
+   options: ['A', 'B', 'C'],
+   emptyValueError: 'Please select section'
+   }
 ];

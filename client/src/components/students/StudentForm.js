@@ -1,18 +1,22 @@
 import _ from 'lodash';
+import moment from 'moment';
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
-import { Button, FormGroup, Col, Panel } from 'react-bootstrap';
+import { Button, FormGroup, Col, Panel, Row } from 'react-bootstrap';
 import StudentField from './StudentField';
 import StudentSelect from './StudentSelect';
+import SelectDatePicker from '../schedule/SelectDatePicker';
 import formFields from './formFields';
 import formSelects from './formSelects';
+import formFieldsInfo from './formFieldsInfo';
 
 class StudentForm extends Component {
 
   componentWillReceiveProps = (nextProps) => {
     const { student } = nextProps;
     if(student._id !== this.props.student._id) {
+      student.birth_date = moment(student.birth_date).format("MM-DD-YYYY");
       this.props.initialize(student);
     }
   }
@@ -20,7 +24,22 @@ class StudentForm extends Component {
   renderFields() {
     return _.map(formFields, ({ label, name }) => {
       return (
-        <FormGroup key={name}>
+        <FormGroup className="col-md-6" key={name}>
+          <Field
+            key={name}
+            component={StudentField}
+            type="text"
+            label={label}
+            name={name} />
+        </FormGroup>
+      );
+    });
+  }
+
+  renderFieldsInfo() {
+    return _.map(formFieldsInfo, ({ label, name }) => {
+      return (
+        <FormGroup className="col-md-6" key={name}>
           <Field
             key={name}
             component={StudentField}
@@ -35,7 +54,7 @@ class StudentForm extends Component {
   renderSelects() {
     return _.map(formSelects, ({ label, name, options }) => {
       return (
-        <FormGroup key={name}>
+        <FormGroup className="col-md-3" key={name}>
           <Field
            name={name}
            key={name}
@@ -62,14 +81,34 @@ class StudentForm extends Component {
     );
   }
 
+  renderDatePicker() {
+    return (
+      <FormGroup>
+        <Field
+          key="birth_date"
+          component={SelectDatePicker}
+          label="Date of Birth"
+          name="birth_date"
+          dateFormat="MM-DD-YYYY"
+        />
+      </FormGroup>
+    );
+  }
+
   render() {
     const { handleSubmit, pristine, submitting, student } = this.props;
     return (
       <Panel header={student._id ? 'Edit Student' : 'Add Student'}>
         <form onSubmit={handleSubmit}>
-          {this.renderFields()}
-          {this.renderSelects()}
-          {this.renderButtons(pristine, submitting)}
+            <Row className="form-row">{this.renderFields()}</Row>
+            <Row className="form-row">{this.renderFieldsInfo()}</Row>
+            <Row className="form-row">
+              {this.renderSelects()}
+              {this.renderDatePicker()}
+            </Row>
+            <Row className="form-row">
+              {this.renderButtons(pristine, submitting)}
+            </Row>
         </form>
       </Panel>
     )
@@ -85,8 +124,11 @@ function validate(values) {
     }
   });
 
-  _.each(formSelects, ({ name, emptyValueError }) => {
+  _.each(formSelects, ({ name, emptyValueError, label }) => {
     if(!values[name]) {
+      errors[name] = emptyValueError;
+    }
+    if(values[name] === "Select " + label ) {
       errors[name] = emptyValueError;
     }
     });
@@ -98,6 +140,9 @@ function validate(values) {
     errors['email'] = 'Invalid email address';
   }
 
+  if(!values["birth_date"]) {
+    errors["birth_date"] = "Please enter birth date";
+  }
   return errors;
 }
 

@@ -8,5 +8,12 @@ export default [
    label: 'Section',
    name: 'section',
    options: ['A', 'B', 'C'],
-   emptyValueError: 'Please select section' }
+   emptyValueError: 'Please select section'
+   },
+   {
+    label: 'Gender',
+    name: 'gender',
+    options: ['Male', 'Female'],
+    emptyValueError: 'Please select gender'
+    }
 ];

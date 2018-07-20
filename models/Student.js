@@ -8,7 +8,9 @@ const studentSchema = new Schema ({
   grade: Number,
   section: String,
   phone: String,
-  email: String
+  email: String,
+  gender: String,
+  birth_date: Date,
 });
 
 mongoose.model('students', studentSchema);

@@ -73,16 +73,12 @@ class ScheduleListPage extends Component {
       <Grid fluid>
         <Row>
           <Col sm={12}>
-            <LinkContainer to="/schedules/new">
-              <Button bsStyle="primary" className="pull-right">
-                <Glyphicon glyph="plus" />Add Schedule
-              </Button>
-            </LinkContainer>
-          </Col>
-        </Row>
-        <Row>
-          <Col sm={12}>
             <Panel header="Class Schedule">
+              <LinkContainer to="/schedules/new">
+                <Button bsStyle="primary" className="pull-right">
+                  <Glyphicon glyph="plus" />Add Schedule
+                </Button>
+              </LinkContainer>
               {this.academicYearDropDown()}
               <ScheduleList
                 schedules={this.props.schedules}

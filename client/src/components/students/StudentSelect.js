@@ -1,14 +1,14 @@
 import _ from 'lodash';
 import React from 'react';
-import { Col, Row, ControlLabel } from 'react-bootstrap';
 
 export default ({ input, label, meta: { error, touched }, options }) => {
   return (
-    <Row>
-      <Col sm={3}><ControlLabel>{label}</ControlLabel></Col>
-      <Col sm={3}>
+    <div>
+      <label className="control-label">{label}</label>
         <select {...input} className='form-control' >
-          <option />
+          <option key={ "Select " + label } value={ "Select " + label }>
+            { "Select " + label }
+          </option>
           { _.map(options, (item) => {
               return (
                 <option key={item} value={item}>{item}</option>
@@ -19,7 +19,6 @@ export default ({ input, label, meta: { error, touched }, options }) => {
         <p className="text-danger">
           {touched && error}
         </p>
-      </Col>
-    </Row>
+    </div>
   );
 }
